@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.932,Q:\MIREA\radproj\Project1.dproj=Q:\Projects\RADproj\PSAutoWinSetup\Project1.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.950,Q:\MIREA\radproj\Unit1.pas=Q:\Projects\RADproj\PSAutoWinSetup\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.106,Q:\Projects\RADproj\PSAutoWinSetup\KMSServers.pas=Q:\Projects\RADproj\PSAutoWinSetup\Unit2.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.896,=Q:\MIREA\radproj\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.950,Q:\MIREA\radproj\Unit1.pas=Q:\Projects\RADproj\PSAutoWinSetup\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.932,Q:\MIREA\radproj\Project1.dproj=Q:\Projects\RADproj\PSAutoWinSetup\Project1.dproj</Transaction>
     <Transaction>1899.12.30 00:00:00.000.950,Q:\MIREA\radproj\Unit1.dfm=Q:\Projects\RADproj\PSAutoWinSetup\Unit1.dfm</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.774,=Q:\Projects\RADproj\PSAutoWinSetup\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.506,=Q:\Projects\RADproj\PSAutoWinSetup\Unit2.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.336,Q:\Projects\RADproj\PSAutoWinSetup\Unit2.pas=Q:\Projects\RADproj\PSAutoWinSetup\RunElevatedSupport.pas</Transaction>
-    <Transaction>2022.04.21 14:41:47.506,=Q:\Projects\RADproj\PSAutoWinSetup\Unit2.pas</Transaction>
-    <Transaction>2022.04.21 14:43:18.106,Q:\Projects\RADproj\PSAutoWinSetup\KMSServers.pas=Q:\Projects\RADproj\PSAutoWinSetup\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.774,=Q:\Projects\RADproj\PSAutoWinSetup\Unit2.pas</Transaction>
   </Transactions>
 </BorlandProject>

@@ -13,7 +13,7 @@ type
   TForm1 = class(TForm)
     ltopIsElevated: TLabel;
     ltopIsAdmin: TLabel;
-    bEzCMD: TButton;
+    bEzSPA: TButton;
     bNewHostname: TButton;
     eOSKey: TEdit;
     ltopPN: TLabel;
@@ -46,6 +46,7 @@ type
     TabSheet2: TTabSheet;
     GroupBox1: TGroupBox;
     Label1: TLabel;
+    bEzUAC: TButton;
     procedure FormCreate(Sender: TObject);
     procedure bNewHostnameClick(Sender: TObject);
     procedure emNewHostnameChange(Sender: TObject);
@@ -56,7 +57,7 @@ type
     procedure cbOpenActivatorClick(Sender: TObject);
     procedure eNewHostnameChange(Sender: TObject);
     procedure bEzCMDAsClick(Sender: TObject);
-    procedure bEzCMDClick(Sender: TObject);
+    procedure bEzSPAClick(Sender: TObject);
     procedure bEzPowershellClick(Sender: TObject);
     procedure bEzControlClick(Sender: TObject);
     procedure bEzREGClick(Sender: TObject);
@@ -229,11 +230,11 @@ begin
   RunAsAdminS('cmd', '');
 end;
 
-procedure TForm1.bEzCMDClick(Sender: TObject);
+procedure TForm1.bEzSPAClick(Sender: TObject);
 var
   Error: Integer;
 begin
-  ExecuteProcess('cmd', '', '', false, false, false, Error);
+  RunAsAdminS('SystemPropertiesAdvanced.exe', '');
 end;
 
 procedure TForm1.bEzControlClick(Sender: TObject);
@@ -249,7 +250,7 @@ end;
 
 procedure TForm1.bEzPowershellClick(Sender: TObject);
 begin
-  RunAsAdminS('powershell', '');
+  RunAsAdminS('UserAccountControlSettings.exe', '');
 end;
 
 procedure TForm1.bEzREGClick(Sender: TObject);
@@ -295,8 +296,18 @@ end;
 
 procedure TForm1.bNewHostnameClick(Sender: TObject);
 begin
-  PSExecute('Rename-Computer -NewName "' + StringReplace(eNewHostname.Text, ' ', '', [rfReplaceAll, rfIgnoreCase]) + '"');
   bNewHostname.Enabled := False;
+  try
+    try
+      PSExecute('Rename-Computer -NewName "' + StringReplace(eNewHostname.Text, ' ', '', [rfReplaceAll, rfIgnoreCase]) + '"');
+    except
+      ShowMessage('В процессе установки NetBIOS имени возникла проблема. Имя не установлено.');
+    end;
+  finally
+    bNewHostname.Enabled := True;
+    ShowMessage('Изменения вступят в силу после перезагрузки.');
+  end;
+
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);

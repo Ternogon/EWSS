@@ -71,9 +71,6 @@ Coordinates=602,1,91,36
 [bEzCMDAs]
 Coordinates=256,146,59,58
 
-[bEzCMD]
-Coordinates=335,214,59,58
-
 [bEzPowershell]
 Coordinates=325,146,59,58
 
@@ -85,4 +82,7 @@ Coordinates=121,10,59,58
 
 [bEzREG]
 Coordinates=10,214,59,58
+
+[bEzSPA]
+Coordinates=335,214,59,58
 

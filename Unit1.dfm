@@ -2,14 +2,13 @@ object Form1: TForm1
   AlignWithMargins = True
   Left = 0
   Top = 0
-  Hint = 'KMS '#1040#1082#1090#1080#1074#1072#1094#1080#1103', '#1076#1083#1103' '#1085#1077#1077' '#1085#1077#1086#1073#1093#1086#1076#1080#1084#1086' '#1087#1086#1076#1082#1083#1102#1095#1077#1085#1080#1077' '#1082' '#1048#1085#1090#1077#1088#1085#1077#1090#1091
   Margins.Left = 10
   Margins.Top = 10
   Margins.Right = 10
   Margins.Bottom = 10
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'WinS Easy Setup Utility'
+  Caption = 'EWSS'
   ClientHeight = 543
   ClientWidth = 608
   Color = clWhite
@@ -32,6 +31,7 @@ object Form1: TForm1
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OldCreateOrder = True
   Position = poDesktopCenter
   StyleElements = [seFont, seClient]
   OnCreate = FormCreate
@@ -106,8 +106,7 @@ object Form1: TForm1
       Font.Name = 'Segoe UI Semilight'
       Font.Style = []
       ParentFont = False
-      ExplicitLeft = 417
-      ExplicitWidth = 188
+      ExplicitLeft = 2
     end
     object cbOpenActivator: TCheckBox
       Left = 8
@@ -128,7 +127,7 @@ object Form1: TForm1
     Top = 89
     Width = 608
     Height = 454
-    ActivePage = pcEZB
+    ActivePage = TabSheet1
     Align = alTop
     MultiLine = True
     TabOrder = 1
@@ -143,15 +142,16 @@ object Form1: TForm1
         BevelOuter = bvNone
         ParentBackground = False
         TabOrder = 0
-        object bEzCMD: TButton
+        object bEzSPA: TButton
           Left = 10
           Top = 326
           Width = 579
           Height = 25
           Align = alCustom
-          Caption = #1050#1086#1084#1072#1085#1076#1085#1072#1103' '#1089#1090#1088#1086#1082#1072
+          Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1077' '#1087#1072#1088#1072#1084#1077#1090#1088#1086#1074' '#1089#1080#1089#1090#1077#1084#1099
+          ElevationRequired = True
           TabOrder = 0
-          OnClick = bEzCMDClick
+          OnClick = bEzSPAClick
         end
         object bEzCMDAs: TButton
           Left = 10
@@ -186,7 +186,7 @@ object Form1: TForm1
         object bEzPowershell: TButton
           Left = 10
           Top = 357
-          Width = 579
+          Width = 280
           Height = 25
           Align = alCustom
           Caption = 'Powershell'
@@ -205,6 +205,17 @@ object Form1: TForm1
           TabOrder = 5
           OnClick = bEzREGClick
         end
+        object bEzUAC: TButton
+          Left = 296
+          Top = 357
+          Width = 293
+          Height = 25
+          Align = alCustom
+          Caption = #1048#1079#1084#1077#1085#1077#1085#1080#1077' '#1087#1072#1088#1072#1084#1077#1090#1088#1086#1074' '#1082#1086#1085#1090#1088#1086#1083#1103' '#1059#1047
+          ElevationRequired = True
+          TabOrder = 6
+          OnClick = bEzPowershellClick
+        end
       end
     end
     object TabSheet1: TTabSheet
@@ -214,7 +225,7 @@ object Form1: TForm1
         AlignWithMargins = True
         Left = 3
         Top = 387
-        Width = 538
+        Width = 594
         Height = 34
         Align = alBottom
         Alignment = taCenter
@@ -227,6 +238,7 @@ object Form1: TForm1
         Font.Name = 'Segoe UI Semilight'
         Font.Style = []
         ParentFont = False
+        ExplicitWidth = 538
       end
       object GroupBox1: TGroupBox
         Left = 3
