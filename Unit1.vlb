@@ -7,9 +7,6 @@ Coordinates=404,214,82,58
 [bNewHostname]
 Coordinates=148,214,105,58
 
-[ltopIsElevated]
-Coordinates=10,282,96,58
-
 [eOSKey]
 Coordinates=263,214,62,58
 
@@ -66,7 +63,7 @@ Coordinates=108,78,80,58
 Coordinates=279,10,59,58
 
 []
-Coordinates=602,1,91,36
+Coordinates=10,282,96,58
 
 [bEzCMDAs]
 Coordinates=256,146,59,58
