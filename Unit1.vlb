@@ -16,9 +16,6 @@ Coordinates=322,78,75,58
 [bAct]
 Coordinates=407,78,49,58
 
-[vleOSKeys]
-Coordinates=345,282,78,36
-
 [eNewHostname]
 Coordinates=348,10,105,58
 Visible=True
@@ -28,9 +25,6 @@ Coordinates=190,10,79,58
 
 [icmpC1]
 Coordinates=179,269,58,36
-
-[bChooseKey]
-Coordinates=10,78,88,58
 
 [ltopEditionID]
 Coordinates=10,146,88,58
@@ -63,23 +57,5 @@ Coordinates=108,78,80,58
 Coordinates=279,10,59,58
 
 []
-Coordinates=10,282,96,58
-
-[bEzCMDAs]
-Coordinates=256,146,59,58
-
-[bEzPowershell]
-Coordinates=325,146,59,58
-
-[bEzControl]
-Coordinates=79,214,59,58
-
-[bEzMSConfig]
-Coordinates=121,10,59,58
-
-[bEzREG]
-Coordinates=10,214,59,58
-
-[bEzSPA]
-Coordinates=335,214,59,58
+Coordinates=10,78,88,58
 

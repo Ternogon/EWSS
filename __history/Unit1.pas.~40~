@@ -8,17 +8,15 @@ uses
   Vcl.Mask, Vcl.Grids, Vcl.ValEdit, IdIcmpClient, IdBaseComponent, IdComponent,
   IdRawBase, IdRawClient, Vcl.ExtCtrls, IdStack, KMSServers, Registry,
   Vcl.ComCtrls, Vcl.ButtonGroup, Vcl.WinXCtrls, Vcl.ActnMan, Vcl.ActnColorMaps,
-  Vcl.Menus, Vcl.Imaging.pngimage;
+  Vcl.Menus, Vcl.Imaging.pngimage, Vcl.Buttons, Vcl.ToolWin, Vcl.WinXPanels,
+  Vcl.ControlList, System.ImageList, Vcl.ImgList;
 
 type
   TForm1 = class(TForm)
     ltopIsAdmin: TLabel;
-    bEzSPA: TButton;
     bNewHostname: TButton;
     eOSKey: TEdit;
     ltopPN: TLabel;
-    vleOSKeys: TValueListEditor;
-    bChooseKey: TButton;
     bSetGVLK: TButton;
     bAct: TButton;
     lOSChosen: TLabel;
@@ -33,20 +31,13 @@ type
     gbActivator: TGroupBox;
     cbOpenActivator: TCheckBox;
     ltopEditionID: TLabel;
-    bEzCMDAs: TButton;
-    bEzPowershell: TButton;
-    bEzControl: TButton;
-    bEzMSConfig: TButton;
-    bEzREG: TButton;
     pTop: TPanel;
-    pEzButtons: TPanel;
     pcMain: TPageControl;
     pcEZM: TTabSheet;
     pcEZC: TTabSheet;
     pcActivator: TTabSheet;
     GroupBox1: TGroupBox;
     Label1: TLabel;
-    bEzUAC: TButton;
     pcMMC: TTabSheet;
     GroupBox4: TGroupBox;
     bEZncpa: TButton;
@@ -75,6 +66,21 @@ type
     iAdmin: TImage;
     ltopIsElevated: TLabel;
     iNotAdmin: TImage;
+    Panel1: TPanel;
+    bCMD: TSpeedButton;
+    bPS: TSpeedButton;
+    bREG: TSpeedButton;
+    bSPA: TSpeedButton;
+    bUAC: TSpeedButton;
+    bControl: TSpeedButton;
+    ImageList1: TImageList;
+    bMSConfig: TSpeedButton;
+    SpeedButton8: TSpeedButton;
+    ListView1: TListView;
+    PageControl1: TPageControl;
+    tsServers: TTabSheet;
+    tsStandartOS: TTabSheet;
+    ListView2: TListView;
     procedure FormCreate(Sender: TObject);
     procedure bNewHostnameClick(Sender: TObject);
     procedure emNewHostnameChange(Sender: TObject);
@@ -98,6 +104,13 @@ type
     procedure bEZcleanmgrClick(Sender: TObject);
     procedure bEZncpaClick(Sender: TObject);
     procedure bEzUACClick(Sender: TObject);
+    procedure bCMDClick(Sender: TObject);
+    procedure bPSClick(Sender: TObject);
+    procedure bREGClick(Sender: TObject);
+    procedure bSPAClick(Sender: TObject);
+    procedure bUACClick(Sender: TObject);
+    procedure bControlClick(Sender: TObject);
+    procedure bMSConfigClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -342,6 +355,11 @@ begin
   PSExecute('UserAccountControlSettings.exe');
 end;
 
+procedure TForm1.bMSConfigClick(Sender: TObject);
+begin
+  RunAsAdminS('msconfig.exe', '');
+end;
+
 procedure TForm1.bEzControlClick(Sender: TObject);
 begin
   PExecute('control');
@@ -381,12 +399,12 @@ end;
 procedure TForm1.bEzPowershellClick(Sender: TObject);
 begin
   //RunAsAdminS('UserAccountControlSettings.exe', '');
-  RunAsAdminS('powershell.exe', '');
+  RunAsAdmin('powershell', '');
 end;
 
 procedure TForm1.bEzREGClick(Sender: TObject);
 begin
-  RunAsAdminS('regedit', '');
+  RunAsAdmin('regedit', '');
 end;
 
 procedure TForm1.cbOpenActivatorClick(Sender: TObject);
@@ -399,6 +417,17 @@ procedure TForm1.bSetServerClick(Sender: TObject);
 begin
   PSExecute('slmgr /skms ' + KMSServers.SelectedKMSServer);
   bAct.Enabled := True;
+end;
+
+procedure TForm1.bSPAClick(Sender: TObject);
+begin
+  RunAsAdminS('SystemPropertiesAdvanced.exe', '');
+end;
+
+procedure TForm1.bUACClick(Sender: TObject);
+begin
+  RunAsAdminS('UserAccountControlSettings.exe', '');
+  //PSExecute('UserAccountControlSettings.exe');
 end;
 
 procedure TForm1.bEZcleanmgrClick(Sender: TObject);
@@ -416,11 +445,21 @@ procedure TForm1.bChooseKeyClick(Sender: TObject);
 var
   I : Integer;
 begin
-  I := vleOSKeys.Row;
-  lOSChosen.Caption := 'ня: ' + vleOSKeys.Keys[I];
-  eOSKey.Text:= vleOSKeys.Cells[1,I];
+  //I := vleOSKeys.Row;
+  //lOSChosen.Caption := 'ня: ' + vleOSKeys.Keys[I];
+  //eOSKey.Text:= vleOSKeys.Cells[1,I];
   InitKMS;
   if ((StringReplace(eOSKey.Text, ' ', '', [rfReplaceAll, rfIgnoreCase]) <> '')) then bSetGVLK.Enabled := True else bSetGVLK.Enabled := False;
+end;
+
+procedure TForm1.bCMDClick(Sender: TObject);
+begin
+  RunAsAdminS('cmd', '');
+end;
+
+procedure TForm1.bControlClick(Sender: TObject);
+begin
+  RunAsAdminS('control.exe', '');
 end;
 
 procedure TForm1.bSetGVLKClick(Sender: TObject);
@@ -455,6 +494,18 @@ begin
   AI1.Animate := False;
 end;
 
+procedure TForm1.bPSClick(Sender: TObject);
+begin
+  RunAsAdminS('powershell', '');
+end;
+
+procedure TForm1.bREGClick(Sender: TObject);
+begin
+  //RunAsAdmin('regedit', '');
+  //PSExecute('regedit.exe');
+  RunAsAdminS('regedit.exe', '');
+  end;
+
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   //Form1.Height := Form1.Height - gbActivator.Height;
@@ -462,6 +513,7 @@ begin
   //normalformH := Form1.Height;
   HNDL := Application.ActiveFormHandle;
   eNewHostname.Text := GetNetBIOSName;
+  Form1.Text := Form1.Text + ' / ' + eNewHostname.Text;
 
   //Init Top labels w/ info about sys
 
@@ -496,7 +548,7 @@ end;
 
 procedure TForm1.lEZsecpolClick(Sender: TObject);
 begin
-  RunAsAdminS('powershell', '-c "C:\Windows\System32\secpol.msc"');
+  RunAsAdmin('secpol', '');
 end;
 
 procedure TForm1.emNewHostnameChange(Sender: TObject);
