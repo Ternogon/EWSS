@@ -75,19 +75,12 @@ type
     bControl: TSpeedButton;
     ImageList1: TImageList;
     bMSConfig: TSpeedButton;
+    SpeedButton8: TSpeedButton;
     ListView1: TListView;
     PageControl1: TPageControl;
     tsServers: TTabSheet;
     tsStandartOS: TTabSheet;
     ListView2: TListView;
-    bLusrmgr: TSpeedButton;
-    SpeedButton8: TSpeedButton;
-    GroupBox5: TGroupBox;
-    eNewDomain: TEdit;
-    bNewDomain: TButton;
-    ltopHWCPU: TLabel;
-    ltopHostname: TLabel;
-    ltopDomain: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure bNewHostnameClick(Sender: TObject);
     procedure emNewHostnameChange(Sender: TObject);
@@ -118,11 +111,6 @@ type
     procedure bUACClick(Sender: TObject);
     procedure bControlClick(Sender: TObject);
     procedure bMSConfigClick(Sender: TObject);
-    procedure bNewDomainClick(Sender: TObject);
-    procedure eNewDomainChange(Sender: TObject);
-    procedure ListView1DblClick(Sender: TObject);
-    procedure ListView2DblClick(Sender: TObject);
-    procedure eOSKeyChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -485,26 +473,8 @@ begin
     end;
   finally
     bSetGVLK.Enabled := True;
-    InitKMS;
   end;
 
-end;
-
-procedure TForm1.bNewDomainClick(Sender: TObject);
-begin
-  bNewDomain.Enabled := False;
-  AI1.Animate := True;
-  try
-    try
-      PSExecute('Add-Computer -DomainName "' + StringReplace(eNewDomain.Text, ' ', '', [rfReplaceAll, rfIgnoreCase]) + '"');
-    except
-      ShowMessage('В процессе добавления машины в домен возникла ошибка. Машина не введена в домен.');
-    end;
-  finally
-    bNewDomain.Enabled := True;
-    // ShowMessage('');
-  end;
-  AI1.Animate := False;
 end;
 
 procedure TForm1.bNewHostnameClick(Sender: TObject);
@@ -543,7 +513,6 @@ begin
   //normalformH := Form1.Height;
   HNDL := Application.ActiveFormHandle;
   eNewHostname.Text := GetNetBIOSName;
-  eNewDomain.Text := GetRegistryValue('SYSTEM\CurrentControlSet\services\Tcpip\Parameters', 'Domain');
   Form1.Text := Form1.Text + ' / ' + eNewHostname.Text;
 
   //Init Top labels w/ info about sys
@@ -566,13 +535,6 @@ begin
   //ltopUAC.Caption := 'UAC: ' + BoolToStr(IsUACEnabled);
   ltopPN.Caption := GetRegistryValue('SOFTWARE\Microsoft\Windows NT\CurrentVersion', 'ProductName');
   ltopEditionID.Caption := GetRegistryValue('SOFTWARE\Microsoft\Windows NT\CurrentVersion', 'EditionID');
-  ltopHWCPU.Caption := 'CPU: ' + GetRegistryValue('HARDWARE\DESCRIPTION\System\CentralProcessor\0', 'ProcessorNameString');
-  ltopHostname.Caption := 'Имя компьютера: ' + eNewHostname.Text;
-  if eNewDomain.Text = '' then
-    ltopDomain.Caption := 'Машина не введена в домен'
-  else
-    ltopDomain.Caption := 'Домен: ' + eNewDomain.Text;
-
 
 
   // Init KMS servers status and publishing it to labels
@@ -589,35 +551,14 @@ begin
   RunAsAdmin('secpol', '');
 end;
 
-procedure TForm1.ListView1DblClick(Sender: TObject);
-begin
-  eOSKey.Text := ListView1.Selected.SubItems.Text;
-  // StringReplace(eOSKey.Text, '	', '', [rfReplaceAll, rfIgnoreCase]);
-end;
-
-procedure TForm1.ListView2DblClick(Sender: TObject);
-begin
-  eOSKey.Text := ListView2.Selected.SubItems.Text;
-end;
-
 procedure TForm1.emNewHostnameChange(Sender: TObject);
 begin
   TMaskEdit(Sender).Modified := False;
 end;
 
-procedure TForm1.eNewDomainChange(Sender: TObject);
-begin
-  bNewDomain.Enabled := True;
-end;
-
 procedure TForm1.eNewHostnameChange(Sender: TObject);
 begin
   bNewHostname.Enabled := True;
-end;
-
-procedure TForm1.eOSKeyChange(Sender: TObject);
-begin
-  bSetGVLK.Enabled := True;
 end;
 
 end.
